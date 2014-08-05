@@ -1,6 +1,7 @@
 <?php
+require_once 'BaseEntity.php';
 
-class Receive {
+class Receive  extends BaseEntity{
  	/**
  	 * 接收方微信号
  	 */
