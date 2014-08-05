@@ -1,11 +1,11 @@
 <?php
 class BaseEntity{
-	public function getInt($mixed){
+	  public static function getInt($mixed){
 		return (int)$mixed;
 		 
 	}
 	
-	public function getString($mixed){
+	public static function getString($mixed){
 		return (string)$mixed;
 	}
 }

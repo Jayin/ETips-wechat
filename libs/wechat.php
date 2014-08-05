@@ -1,5 +1,6 @@
 <?php
 require 'interface/IWechat.php';
+
 class Wechat implements Iwechat {
 	private $TOKEN = '';
 	public function __construct($configure) {
