@@ -9,5 +9,9 @@ $wechat = new Wechat($wechatConfig);
 
 $wechat->valid();
 
+$wechat->getRev();
+
+$wechat->reply();
+
 
 

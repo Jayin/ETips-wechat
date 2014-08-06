@@ -1,14 +1,21 @@
 <?php
 require 'interface/IWechat.php';
+require_once 'libs/entity/Receive.php';
+require_once 'libs/entity/TextMsg.php';
+
 
 class Wechat implements Iwechat {
 	private $TOKEN = '';
+	private $receive ;
+	
 	public function __construct($configure) {
+		//初始化配置
 		if (isset ( $configure )) {
 			$this->TOKEN = $configure ['TOKEN'];
 		} else {
 			die ( "请添加配置信息" );
 		}
+		
 	}
 	
 	/**
@@ -72,12 +79,30 @@ class Wechat implements Iwechat {
 		}
 	}
 	public function getRev() {
-		// TODO Auto-generated method stub
+		$xml_string = file_get_contents("php://input"); 
+		$type = simplexml_load_string($xml_string)->MsgType;
+		switch ($type){
+			case  'text':
+				$this->receive = new TextMsg($xml_string);
+				
+				break;
+			default:
+				//not support
+				break;
+		}
 	}
 	public function dispatch() {
 		// TODO Auto-generated method stub
 	}
 	public function reply() {
-		// TODO Auto-generated method stub
+		$reply_text = '<xml>
+<ToUserName>%s</ToUserName>
+<FromUserName>%s</FromUserName>
+<CreateTime>%d</CreateTime>
+<MsgType>%s</MsgType>
+<Content>%s</Content>
+</xml>';
+		$res = sprintf($reply_text,$this->receive->FromUserName,$this->receive->ToUserName,time(),'text','你好，ETips正在努力开发中!敬请期待！');
+		echo $res ;
 	}
 }
