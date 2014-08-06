@@ -23,5 +23,6 @@ class Event extends BaseEntity {
 	 */
 	public $Event;
 	public function __construct() {
+		//TODO 所有基类的解析都放在这里
 	}
 }
