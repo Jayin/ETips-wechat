@@ -24,8 +24,13 @@ class Receive  extends BaseEntity{
 	public $MsgId;
 	 
 
-	public function __construct(){
-	 
+	public function __construct($xml_string){
+		$obj = simplexml_load_string ( $xml_string );
+		$this->ToUserName = self::getString ( $obj->ToUserName );
+		$this->FromUserName = self::getString ( $obj->FromUserName );
+		$this->CreateTime = self::getInt ( $obj->CreateTime );
+		$this->MsgType = self::getString ( $obj->MsgType );
+		$this->MsgId = self::getString ( $obj->MsgId );
 	}
 }
 
