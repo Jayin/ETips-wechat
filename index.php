@@ -11,6 +11,7 @@ $wechat->valid ();
 
 $wechat->RecevieMsg ();
 
+ 
 // 业务逻辑处理 ->reply
 switch ($wechat->getMsgType ()) {
 	case Wechat::MSGTYPE_TEXT :
@@ -35,6 +36,7 @@ switch ($wechat->getMsgType ()) {
 		$wechat->text ( "亲，我无法识别你发了什么东西....(逃" )->reply ();
 		break;
 }
+
 
 
 
