@@ -119,7 +119,7 @@ class Wechat implements Iwechat {
 				$this->receive = new VoiceMsg ( $xml_string );
 				break;
 			case Wechat::MSGTYPE_VIDEO :
-				
+				$this->receive = new VideoMsg ( $xml_string );
 				break;
 			default :
 				echo "defaut.....";
