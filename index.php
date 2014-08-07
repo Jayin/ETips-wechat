@@ -28,6 +28,7 @@ switch ($wechat->getMsgType ()) {
 	case Wechat::MSGTYPE_VIDEO :
 		break;
 	default :
+		$wechat->text ( "亲，我无法识别你发了什么东西....(逃" )->reply ();
 		break;
 }
 
