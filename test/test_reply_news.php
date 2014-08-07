@@ -8,7 +8,7 @@ $Articles = array (
 // 		new Article ( "title3", "Description3", "PicUrl3", "Url3" ),
 // 		new Article ( "title4", "Description4", "PicUrl4", "Url4" ),
 // 		new Article ( "title5", "Description5", "PicUrl5", "Url5" ),
-// 		new Article ( "title6", "Description6", "PicUrl6", "Url6" ),
+// 		new Article ( "title6",NewFile.html "Description6", "PicUrl6", "Url6" ),
 // 		new Article ( "title7", "Description7", "PicUrl7", "Url7" ),
 // 		new Article ( "title8", "Description8", "PicUrl8", "Url8" ),
 // 		new Article ( "title9", "Description9", "PicUrl9", "Url9" ),
