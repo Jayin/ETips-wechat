@@ -3,6 +3,12 @@ require 'interface/IWechat.php';
 require_once 'libs/entity/Receive.php';
 require_once 'libs/entity/TextMsg.php';
 require_once 'libs/entity/ImageMsg.php';
+require_once 'libs/entity/LinkMsg.php';
+require_once 'libs/entity/LocationMsg.php';
+require_once 'libs/entity/VideoMsg.php';
+require_once 'libs/entity/VoiceMsg.php';
+require_once 'libs/entity/SubscribeEvent.php';
+
 
 class Wechat implements Iwechat {
 	/* 消息类型 */
@@ -90,7 +96,7 @@ class Wechat implements Iwechat {
 	}
 	/**
 	 * 接受微信请求信息
-	 * 
+	 *
 	 * @see Iwechat::getRev()
 	 */
 	public function RecevieMsg() {
@@ -101,22 +107,22 @@ class Wechat implements Iwechat {
 				$this->receive = new TextMsg ( $xml_string );
 				break;
 			case Wechat::MSGTYPE_IMAGE :
-				$this->receive = new ImageMsg($xml_string);
+				$this->receive = new ImageMsg ( $xml_string );
 				break;
 			case Wechat::MSGTYPE_LINK :
-				 
+				$this->receive = new LinkMsg ( $xml_string );
 				break;
 			case Wechat::MSGTYPE_LOCATION :
-				 
+				
 				break;
 			case Wechat::MSGTYPE_VOICE :
-				 
+				
 				break;
 			case Wechat::MSGTYPE_VIDEO :
-			 
+				
 				break;
 			default :
-				 
+				echo "defaut.....";
 				break;
 		}
 	}
