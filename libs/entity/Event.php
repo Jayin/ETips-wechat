@@ -22,7 +22,13 @@ class Event extends BaseEntity {
 	 * 事件类型
 	 */
 	public $Event;
-	public function __construct() {
-		//TODO 所有基类的解析都放在这里
+	
+	public function __construct($xml_string) {
+		$obj = simplexml_load_string($xml_string);
+		$this->ToUserName = self::getString($obj->ToUserName);
+		$this->FromUserName = self::getString($obj->FromUserName);
+		$this->CreateTime = self::getInt($obj->CreateTime);
+		$this->MsgType = self::getString($obj->MsgType);
+		$this->Event = self::getString($obj->Event);
 	}
 }

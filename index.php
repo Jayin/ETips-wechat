@@ -31,6 +31,27 @@ switch ($wechat->getMsgType ()) {
 	case Wechat::MSGTYPE_VIDEO :
 		$wechat->text ( "亲，我收到你发的视频了,么么哒" )->reply ();
 		break;
+	case Wechat::MSGTYPE_EVENT :
+		//事件消息
+		switch ($wechat->getEvent ()) {
+			case Wechat::EVENT_SUBSCRIBE :
+				$wechat->text ( "欢迎关注ETips的官方微信,求调戏！么么哒！" )->reply ();
+				break;
+			case Wechat::EVENT_UNSUBSCRIBE :
+				// 用户取消订阅
+ 				//$wechat->text ( "用户取消订阅了" )->reply ();
+				break;
+			case Wechat::EVENT_SCAN :
+				break;
+			case Wechat::EVENT_LOCATION :
+				break;
+			
+			case Wechat::EVENT_CLICK :
+				break;
+			case Wechat::EVENT_VIEW :
+				break;
+		}
+		break;
 	default :
 		$wechat->text ( "亲，我无法识别你发了什么东西....(逃" )->reply ();
 		break;
