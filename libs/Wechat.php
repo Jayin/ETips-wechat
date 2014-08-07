@@ -116,7 +116,7 @@ class Wechat implements Iwechat {
 				$this->receive = new LocationMsg ( $xml_string );
 				break;
 			case Wechat::MSGTYPE_VOICE :
-				
+				$this->receive = new VoiceMsg ( $xml_string );
 				break;
 			case Wechat::MSGTYPE_VIDEO :
 				
