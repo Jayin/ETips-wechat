@@ -149,10 +149,10 @@ class Wechat implements Iwechat {
 				$even_type = simplexml_load_string ( $xml_string )->Event;
 				switch ($even_type) {
 					case Wechat::EVENT_SUBSCRIBE :
-						$this->receive = new SubScribeEvent($xml_string);
+						$this->receive = new SubScribeEvent ( $xml_string );
 						break;
 					case Wechat::EVENT_UNSUBSCRIBE :
-						$this->receive = new SubScribeEvent($xml_string);
+						$this->receive = new SubScribeEvent ( $xml_string );
 						break;
 					case Wechat::EVENT_SCAN :
 						break;
@@ -181,7 +181,7 @@ class Wechat implements Iwechat {
 					   <MsgType>%s</MsgType>
 					   <Content>%s</Content>
 					   </xml>';
-		$this->response = sprintf ( $reply_text, $this->receive->FromUserName, $this->receive->ToUserName, time (), 'text', $Content );
+		$this->response = sprintf ( $reply_text, $this->receive->FromUserName, $this->receive->ToUserName, time (), Wechat::MSGTYPE_TEXT, $Content );
 		return $this;
 	}
 	public function image($MediaId) {
@@ -196,8 +196,24 @@ class Wechat implements Iwechat {
 	public function music($Title, $Description, $MusicURL, $HQMusicUrl, $ThumbMediaId) {
 		// TODO Auto-generated method stub
 	}
-	public function news($ArticleCount, $Articles, $Title, $Description, $PicUrl, $Url) {
-		// TODO Auto-generated method stub
+	public function news($Articles) {
+		// $ArticleCount, $Articles, $Title, $Description, $PicUrl, $Url
+		$reply_text = '<xml>
+					<ToUserName>%s</ToUserName>
+					<FromUserName>%s</FromUserName>
+					<CreateTime>%d</CreateTime>
+					<MsgType>%s</MsgType>
+					<ArticleCount>%d</ArticleCount>
+					<Articles>%s</Articles>
+					</xml>';
+		$items = '';
+		// 最多10条
+		$array_length = count ( $Articles ) > 10 ? 10 : count ( $Articles );
+		for($i = 0; $i < $array_length; $i ++) {
+			$items .= $Articles [$i]->toXml();
+		}
+		$this->response = sprintf ( $reply_text, $this->receive->FromUserName, $this->receive->ToUserName, time (), Wechat::MSGTYPE_NEWS, $array_length, $items );
+		return $this;
 	}
 	/**
 	 * 获取消息类型
@@ -208,11 +224,11 @@ class Wechat implements Iwechat {
 	/**
 	 * 获取时间类型，Note:只有事件消息才可以调用
 	 */
-	public function getEvent(){
-		if($this->getMsgType() == Wechat::MSGTYPE_EVENT){
+	public function getEvent() {
+		if ($this->getMsgType () == Wechat::MSGTYPE_EVENT) {
 			return $this->receive->Event;
-		}else{
-			die("该消息类型不是事件消息,无法调用这方法");
+		} else {
+			die ( "该消息类型不是事件消息,无法调用这方法" );
 		}
 	}
 }

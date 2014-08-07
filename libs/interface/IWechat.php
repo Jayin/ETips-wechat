@@ -55,15 +55,9 @@ interface Iwechat{
 	public function music($Title,$Description,$MusicURL,$HQMusicUrl,$ThumbMediaId);
 	/**
 	 * 回复图文消息
-	 * 
-	 * @param  $ArticleCount  图文消息个数，限制为10条以内 
-	 * @param  $Articles  多条图文消息信息，默认第一个item为大图,注意，如果图文数超过10，则将会无响应 
-	 * @param  [optional] $Title  	图文消息标题 
-	 * @param  [optional] $Description 图文消息描述 
-	 * @param  [optional] $PicUrl 图片链接，支持JPG、PNG格式，较好的效果为大图360*200，小图200*200 
-	 * @param  [optional] $Url  	点击图文消息跳转链接 
+	 * @param array $Articles  多条图文消息信息，默认第一个item为大图,注意，如果图文数超过10，则微信服务器将会无响应
 	 */
-	public function news($ArticleCount,$Articles,$Title,$Description,$PicUrl,$Url);
+	public function news($Articles);
 	
 }
 
