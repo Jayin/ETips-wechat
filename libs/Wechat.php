@@ -5,8 +5,21 @@ require_once 'libs/entity/TextMsg.php';
 
 
 class Wechat implements Iwechat {
+	/* 消息类型 */
+	const MSGTYPE_TEXT = 'text';
+	const MSGTYPE_IMAGE = 'image';
+	const MSGTYPE_LOCATION = 'location';
+	const MSGTYPE_LINK = 'link';
+	const MSGTYPE_EVENT = 'event';
+	const MSGTYPE_MUSIC = 'music';
+	const MSGTYPE_VOICE = 'voice';
+	const MSGTYPE_VIDEO = 'video';
+ 
+	private $MsgType; 
+	
 	private $TOKEN = '';
-	private $receive ;
+	private $receive ;	
+	private $response;
 	
 	public function __construct($configure) {
 		//初始化配置
@@ -78,31 +91,65 @@ class Wechat implements Iwechat {
 			}
 		}
 	}
-	public function getRev() {
+	/**
+	 * 接受微信请求信息
+	 * @see Iwechat::getRev()
+	 */
+	public function RecevieMsg() {
 		$xml_string = file_get_contents("php://input"); 
-		$type = simplexml_load_string($xml_string)->MsgType;
-		switch ($type){
-			case  'text':
+		$this->MsgType = simplexml_load_string($xml_string)->MsgType;
+		switch ($this->MsgType){
+			case  Wechat::MSGTYPE_TEXT:
 				$this->receive = new TextMsg($xml_string);
-				
 				break;
 			default:
 				//not support
 				break;
 		}
 	}
-	public function dispatch() {
+ 
+	public function reply() {
+		echo $this->response ;
+	}
+    
+	public function text($Content) {
+		$reply_text = '<xml>
+					   <ToUserName>%s</ToUserName>
+					   <FromUserName>%s</FromUserName>
+					   <CreateTime>%d</CreateTime>
+					   <MsgType>%s</MsgType>
+					   <Content>%s</Content>
+					   </xml>';
+		$this->response = sprintf($reply_text,$this->receive->FromUserName,$this->receive->ToUserName,time(),'text',$Content);
+		return $this;
+	}
+ 
+	public function image($MediaId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public function voice($MediaId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+ 
+	public function video($MediaId, $Title, $Description) {
+	 		// TODO Auto-generated method stub
+	}
+
+ 
+	public function music($Title, $Description, $MusicURL, $HQMusicUrl, $ThumbMediaId) {
 		// TODO Auto-generated method stub
 	}
-	public function reply() {
-		$reply_text = '<xml>
-<ToUserName>%s</ToUserName>
-<FromUserName>%s</FromUserName>
-<CreateTime>%d</CreateTime>
-<MsgType>%s</MsgType>
-<Content>%s</Content>
-</xml>';
-		$res = sprintf($reply_text,$this->receive->FromUserName,$this->receive->ToUserName,time(),'text','你好，ETips正在努力开发中!敬请期待！');
-		echo $res ;
+
+	public function news($ArticleCount, $Articles, $Title, $Description, $PicUrl, $Url) {
+		// TODO Auto-generated method stub
 	}
+	
+	public function getMsgType(){
+		return $this->MsgType;
+	}
+
 }
