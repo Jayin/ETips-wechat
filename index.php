@@ -11,7 +11,6 @@ $wechat->valid ();
 
 $wechat->RecevieMsg ();
 
- 
 // 业务逻辑处理 ->reply
 switch ($wechat->getMsgType ()) {
 	case Wechat::MSGTYPE_TEXT :
