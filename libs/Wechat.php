@@ -6,14 +6,15 @@ require_once 'libs/entity/TextMsg.php';
 
 class Wechat implements Iwechat {
 	/* 消息类型 */
-	const MSGTYPE_TEXT = 'text';
-	const MSGTYPE_IMAGE = 'image';
-	const MSGTYPE_LOCATION = 'location';
-	const MSGTYPE_LINK = 'link';
-	const MSGTYPE_EVENT = 'event';
-	const MSGTYPE_MUSIC = 'music';
-	const MSGTYPE_VOICE = 'voice';
-	const MSGTYPE_VIDEO = 'video';
+    const MSGTYPE_TEXT = 'text';
+    const MSGTYPE_IMAGE = 'image';
+    const MSGTYPE_LOCATION = 'location';
+    const MSGTYPE_LINK = 'link';
+    const MSGTYPE_EVENT = 'event';
+    const MSGTYPE_MUSIC = 'music';
+    const MSGTYPE_NEWS = 'news';
+    const MSGTYPE_VOICE = 'voice';
+    const MSGTYPE_VIDEO = 'video';
  
 	private $MsgType; 
 	
