@@ -13,8 +13,12 @@ class Article {
 	public $PicUrl;
 	/** 点击图文消息跳转链接*/
 	public $Url;
+	/** 文章类型*/
+	public $article_type;
+	
 	function __construct() {
+		//TODO __construct
 	}
 }
 
-?>
+ 
