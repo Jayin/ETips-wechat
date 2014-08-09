@@ -1,5 +1,4 @@
 <?php
-
 // require './libs/configure.php';
 require 'libs/Wechat.php';
 // 加载设置文件

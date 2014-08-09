@@ -1,5 +1,5 @@
 <?php
-require 'interface/IWechat.php';
+require_once 'interface/IWechat.php';
 require_once 'libs/entity/Receive.php';
 require_once 'libs/entity/TextMsg.php';
 require_once 'libs/entity/ImageMsg.php';

@@ -1,26 +1,24 @@
 <?php
-/*
- app 
- 
- controller.get(function);
+ini_set ( "display_errors", 'on' );
+error_reporting ( E_ALL );
 
- controller.post(function);
+require_once '__init__.php';
 
+$app->get ( function ($req, $res) {
+	echo "get!!!!!!!!!!";
+} );
 
- app.work();
+$app->post ( function ($req, $res) {
+	echo "post!!!!!!!!!!";
+} );
 
+$app->put ( function ($req, $res) {
+	echo "put!!!!!!!!!!";
+} );
 
+$app->delete ( function ($req, $res) {
+	echo "delete!!!!!!!!!!";
+} );
 
-
- */
-
-print_r($_SERVER[REQUEST_URI]);
-echo "<br>";
-print_r($_SERVER[REMOTE_ADDR]);
-// print_r($_POST);
-
-// print_r($_GET);
-
-// print_r($_REQUEST);
-// var_dump($_REQUEST);
-
+$app->work ();
+	
