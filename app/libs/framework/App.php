@@ -21,11 +21,14 @@ class App {
 	// config
 	public $config;
 	public function __construct($config) {
+		if(!$config){
+			die('you should Application config');
+		}
 		$this->request_method = $_SERVER ['REQUEST_METHOD'];
 		$this->config = $config;
 		
 		$this->request = new Request();
-		$this->response = new Response();
+		$this->response = new Response($config);
 	}
 	public function work() {
 		$handler = null;

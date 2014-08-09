@@ -6,7 +6,11 @@ error_reporting(E_ALL);
 require_once '__init__.php';
 
 $app->get ( function ($req, $res) {
-	echo "get !!!";
+// 	var_dump($req);
+// 	$res->send("LOL!");
+// 	$res->redirct("common/home");
+	$data['username']  = "Jayin";
+	$res->render('common/home.html',$data);
 	
 } );
 $app->post ( function ($req, $res) {

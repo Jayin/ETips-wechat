@@ -14,16 +14,4 @@
 - [ ] Controller
 
 ### simple web framework
-require_once 'App.php';
-
-app = new App();
-app.get(function($req,$res){
-
-    $res->send('ok');
-    //$res->render('a.tpl',$data);
-});
-
-app->post();
-
-
-app->work();
+2014.08.09 v0.0.1_rc
