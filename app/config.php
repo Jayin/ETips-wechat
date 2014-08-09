@@ -7,11 +7,12 @@ $config = array (
 		'view_folder' => __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR,
 		'controller_folder' => __DIR__ . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR 
 );
+//display errors 
+ini_set ( "display_errors", 'on' );
+error_reporting ( E_ALL );
 
 if ($dev) {
 	// dev
-	ini_set ( "display_errors", 'on' );
-	error_reporting ( E_ALL );
 	// DB config
 	$config ['USERNAME'] = 'root';
 	$config ['PSW'] = 'root';
