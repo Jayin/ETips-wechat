@@ -15,3 +15,6 @@
 
 ### simple web framework
 2014.08.09 v0.0.1_rc
+todo:
+1.add session
+2.add error handler
