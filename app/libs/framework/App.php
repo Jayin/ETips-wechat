@@ -26,7 +26,7 @@ class App {
 		}
 		$this->request_method = $_SERVER ['REQUEST_METHOD'];
 		$this->config = $config;
-		
+		 
 		$this->request = new Request();
 		$this->response = new Response($config);
 	}

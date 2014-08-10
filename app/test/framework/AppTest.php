@@ -1,8 +1,6 @@
 <?php
 
-ini_set("display_errors",'on');
-error_reporting(E_ALL);
- 
+
 require_once '__init__.php';
 
 $app->get ( function ($req, $res) {

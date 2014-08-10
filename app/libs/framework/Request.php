@@ -2,6 +2,8 @@
 
 namespace libs\framework;
 
+require_once 'Session.php';
+
 class Request {
 	public $cookie;
 	public $session;
@@ -17,8 +19,7 @@ class Request {
 	public $data;
 	public function __construct() {
 		$this->cookie = $_COOKIE;
-		if (isset($_SESSION))
-			$this->session = $_SESSION;
+		$this->session = new Session();
 		$this->file = $_FILES;
 		$this->request_time = $_SERVER ['REQUEST_TIME'];
 		$this->params = $_GET;
