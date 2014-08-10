@@ -1,6 +1,7 @@
 <?php
 // require './libs/configure.php';
 require 'libs/Wechat.php';
+require 'libs/utils/chater.php';
 // 加载设置文件
 $wechatConfig = require 'configure.php';
 
@@ -13,7 +14,11 @@ $wechat->RecevieMsg ();
 // 业务逻辑处理 ->reply
 switch ($wechat->getMsgType ()) {
 	case Wechat::MSGTYPE_TEXT :
-		$wechat->text ( "ETips正在努力开发中，敬请期待！" )->reply ();
+// 		$wechat->text ( "ETips正在努力开发中，敬请期待！" )->reply ();
+		$wechat->receive->Content;
+		$chater = new Chater();
+		$chater->send($wechat->receive->Content);
+		$wechat->text ( $chater->getMsg() )->reply ();
 		break;
 	case Wechat::MSGTYPE_IMAGE :
 		$wechat->text ( "亲，我收到你发的图片了,么么哒" )->reply ();

@@ -47,7 +47,7 @@ class Wechat implements Iwechat {
 	const EVENT_VIEW = 'VIEW';
 	private $MsgType;
 	private $TOKEN = '';
-	private $receive;
+	public $receive;
 	private $response;
 	public function __construct($configure) {
 		// 初始化配置
