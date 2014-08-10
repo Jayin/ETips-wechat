@@ -1,15 +1,16 @@
 <?php
-ini_set ( "display_errors", 'on' );
-error_reporting ( E_ALL );
-
 require_once '__init__.php';
 
 $app->get ( function ($req, $res) {
-	echo "get!!!!!!!!!!";
+	$res->render('admin/login.html');
 } );
 
 $app->post ( function ($req, $res) {
-	echo "post!!!!!!!!!!";
+	 var_dump($req);
+	 $username = $req->data['username'];
+	 $password = $req->data['password'];
+	 echo $username."<br>";
+	 echo $password;
 } );
 
 $app->put ( function ($req, $res) {
