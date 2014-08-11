@@ -27,9 +27,9 @@ Admin
 DROP TABLE IF EXISTS admin;
 CREATE TABLE admin (
     id int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name int(16) NOT NULL UNIQUE,
+    name varchar(16) NOT NULL UNIQUE,
     psw  varchar(64),
-    lv int(3) NOT NULL
+    lv int(3) NOT NULL DEFAULT 10
 );
-
-INSERT INTO admin (name,psw,lv) VALUES('root','root',10);
+-- defalut password: root
+INSERT INTO admin (name,psw,lv) VALUES('root','dc76e9f0c0006e8f919e0c515c66dbba3982f785',10);
