@@ -3,7 +3,7 @@
 
 require_once '__init__.php';
 
-$app->get ( function ($req, $res) {
+$app->get ( function ($app,$req, $res) {
 // 	var_dump($req);
 // 	$res->send("LOL!");
 // 	$res->redirct("common/home");
@@ -11,15 +11,15 @@ $app->get ( function ($req, $res) {
 	$res->render('common/home.html',$data);
 	
 } );
-$app->post ( function ($req, $res) {
+$app->post ( function ($app,$req, $res) {
 	echo "post !!";
 } );
 
-$app->put ( function ($req, $res) {
+$app->put ( function ($app,$req, $res) {
 	echo "put !!";
 } );
 
-$app->delete ( function ($req, $res) {
+$app->delete ( function ($app,$req, $res) {
 	echo "delete !!";
 } );
 
