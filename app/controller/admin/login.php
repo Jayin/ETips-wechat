@@ -1,23 +1,31 @@
 <?php
+
+
 require_once '__init__.php';
 
-$app->get ( function ($req, $res) {
+$app->get ( function ($app,$req, $res) {
 	$res->render('admin/login.html');
 } );
 
-$app->post ( function ($req, $res) {
-	 var_dump($req);
+$app->post ( function ($app,$req, $res) {
+ 
 	 $username = $req->data['username'];
 	 $password = $req->data['password'];
-	 echo $username."<br>";
-	 echo $password;
+ 
+	 $mode_admin = $app->loader->model('Admin');
+	 $a = $mode_admin->login($username,$password);
+	 if($a){
+	 	$res->redirct('common/home');
+	 }else{
+	 	echo 'login faild..';
+	 }
 } );
 
-$app->put ( function ($req, $res) {
+$app->put ( function ($app,$req, $res) {
 	echo "put!!!!!!!!!!";
 } );
 
-$app->delete ( function ($req, $res) {
+$app->delete ( function ($app,$req, $res) {
 	echo "delete!!!!!!!!!!";
 } );
 
