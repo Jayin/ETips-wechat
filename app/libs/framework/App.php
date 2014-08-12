@@ -7,6 +7,8 @@ use libs\framework\Request;
 
 require_once 'Request.php';
 require_once 'Response.php';
+require_once 'Loader.php';
+require_once 'DB.php';
 
 class App {
 	public $request_method;
@@ -18,17 +20,25 @@ class App {
 	// req and res
 	private $request;
 	private $response;
+	//db
+	public $db;
+	//loader
+	public $loader;
 	// config
 	public $config;
 	public function __construct($config) {
 		if(!$config){
 			die('you should Application config');
 		}
+	
 		$this->request_method = $_SERVER ['REQUEST_METHOD'];
 		$this->config = $config;
+		$this->db = new  DB($config);
 		 
 		$this->request = new Request();
 		$this->response = new Response($config);
+		
+		$this->loader = new Loader($this);
 	}
 	public function work() {
 		$handler = null;
@@ -57,7 +67,7 @@ class App {
 				break;
 		}
 		if ($handler)
-			$handler ( $this->request, $this->response );
+			$handler ($this, $this->request, $this->response );
 	}
 	public function get($get_handler = null) {
 		$this->GET_handler = $get_handler;
