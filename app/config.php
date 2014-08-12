@@ -4,6 +4,7 @@ Application Config
  */
 $dev = true;
 $config = array (
+		'model_folder' => __DIR__ . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR ,
 		'view_folder' => __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR,
 		'controller_folder' => __DIR__ . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR 
 );
