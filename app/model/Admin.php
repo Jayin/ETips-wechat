@@ -1,7 +1,8 @@
 <?php
-namespace model;
 
-class Admin{
+include_once 'Model.php';
+
+class Admin extends Model{
 	/**
 	 * 管理员id
 	 */
@@ -18,7 +19,18 @@ class Admin{
 	 * 密码
 	 */
 	public $psw;
-	public function __construct(){
-		//TODO ...
+
+	
+	public function login($name,$psw){
+		$res = $this->db->query(sprintf("select * from admin where name='%s' and psw='%s'",$name,sha1($psw)));
+		if($res){
+			$a = new Admin();
+			$a->name = $res[0]['name'];
+			$a->id = $res[0]['id'];
+			return $a;
+		}
+		return null;
 	}
+ 
 }
+

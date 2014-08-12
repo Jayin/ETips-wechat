@@ -1,6 +1,5 @@
 <?php
 
-namespace model;
 
 class Article {
 	/** 文章唯一id*/

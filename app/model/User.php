@@ -1,6 +1,5 @@
 <?php
 
-namespace model;
 
 class User {
 	/** 微信openid*/
