@@ -17,6 +17,8 @@ class App {
 	private $POST_handler;
 	private $PUT_handler;
 	private $DELETE_handler;
+	private $Pre_handler;
+	private $Finish_hander;
 	// req and res
 	private $request;
 	private $response;
@@ -41,6 +43,10 @@ class App {
 		$this->loader = new Loader($this);
 	}
 	public function work() {
+		if($this->Pre_handler){
+			$pre_handler = $this->Pre_handler;
+			$pre_handler($this);
+		}
 		$handler = null;
 		switch ($this->request_method) {
 			case 'GET' :
@@ -66,8 +72,15 @@ class App {
 			default :
 				break;
 		}
-		if ($handler)
+		if ($handler){
 			$handler ($this, $this->request, $this->response );
+		}
+		if($this->Finish_hander){
+			$finish_handler = $this->Finish_hander;
+			$finish_handler($this);
+			 
+		}
+			
 	}
 	public function get($get_handler = null) {
 		$this->GET_handler = $get_handler;
@@ -80,5 +93,12 @@ class App {
 	}
 	public function delete($delete_handler = null) {
 		$this->DELETE_handler = $delete_handler;
+	}
+	
+	public function onPre($pre_handler = null) {
+		$this->Pre_handler = $pre_handler;
+	}
+	public function onFinish($Finish_hander = null) {
+		$this->Finish_hander = $Finish_hander;
 	}
 }
