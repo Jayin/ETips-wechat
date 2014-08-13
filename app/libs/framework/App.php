@@ -19,13 +19,15 @@ class App {
 	private $DELETE_handler;
 	private $Pre_handler;
 	private $Finish_hander;
+	//models
+	private $models = array();
 	// req and res
 	private $request;
 	private $response;
 	//db
 	public $db;
 	//loader
-	public $loader;
+	private $loader;
 	// config
 	public $config;
 	public function __construct($config) {
@@ -42,6 +44,20 @@ class App {
 		
 		$this->loader = new Loader($this);
 	}
+	/**
+	 * 加载实体类
+	 * @param string $model
+	 */
+	public function model($model){
+		if(!isset($this->models['model_'.strtolower($model)])){
+			$this->models['model_'.strtolower($model)] = $this->loader->model($model);
+		}
+	}
+	
+	public function __get($key){
+		return isset($this->models[$key]) ? $this->models[$key] : null ;
+	}
+	
 	public function work() {
 		if($this->Pre_handler){
 			$pre_handler = $this->Pre_handler;

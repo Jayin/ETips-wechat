@@ -5,6 +5,20 @@
 * onFinish()
 数据库链接关闭等等的操作
 
+* model($model)
+e.g
+```php
+$app = new App($config);
+//load the model Admin
+$app->model('Admin');
+
+//use /visit it 
+$app->mode_admin
+
+
+```
+
+
 ### model
 不允许有构造函数，继承子Model
 
