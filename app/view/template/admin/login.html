@@ -18,6 +18,11 @@
 
 <body>
     <div class="container frame">
+    	<?php if(isset($error)){ ?>
+	    	<div class="alert alert-warning" role="alert">
+	    		<p><?php echo $error; ?></p>
+	    	</div>
+		<?php } ?>
         <form role="form" method="POST" action="login.php">
             <div class="form-group">
                 <label>username</label>

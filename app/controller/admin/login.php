@@ -20,7 +20,8 @@ $app->post ( function ($app,$req, $res) {
 	 if($a){
 	 	$res->redirct('common/home');
 	 }else{
-	 	echo 'login faild..';
+	 	$data['error'] = "Password is incorrect!";
+	 	$res->render('admin/login.html',$data);
 	 }
 } );
 
