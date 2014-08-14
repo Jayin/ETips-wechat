@@ -19,11 +19,11 @@
 <body>
     <div class="container frame">
     	<?php if(isset($error)){ ?>
-	    	<div class="alert alert-warning" role="alert">
+	    	<div class="alert alert-warning" >
 	    		<p><?php echo $error; ?></p>
 	    	</div>
 		<?php } ?>
-        <form role="form" method="POST" action="login.php">
+        <form  method="POST" action="login.php">
             <div class="form-group">
                 <label>username</label>
                 <input name="username" class="form-control" type="text" placeholder="Enter you username">
