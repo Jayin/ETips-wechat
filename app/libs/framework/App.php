@@ -61,9 +61,8 @@ class App {
 	public function work() {
 		if($this->Pre_handler){
 			$pre_handler = $this->Pre_handler;
-			$pre_handler($this);
+			$pre_handler($this, $this->request, $this->response);
 		}
-		$handler = null;
 		switch ($this->request_method) {
 			case 'GET' :
 				if ($this->GET_handler) {
