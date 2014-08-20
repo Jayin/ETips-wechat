@@ -19,7 +19,7 @@ CREATE TABLE article(
     description varchar(128) NOT NULL,
     pic_url varchar (128) NOT NULL,
     url varchar (128) NOT NULL,
-    article_type int(16) NOT NULL
+    article_type varchar (32) NOT NULL
 );
 
 /*
