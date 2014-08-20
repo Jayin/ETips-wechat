@@ -16,7 +16,7 @@ $app->post ( function ($app,$req, $res) {
 	 $username = $req->data['username'];
 	 $password = $req->data['password'];
 
-     $admin = new $app->model_admin($app);
+     $admin = new Admin($app);
 	 $a =$admin->login($username,$password);
 	 if($a){
 	 	$res->redirct('common/home');
