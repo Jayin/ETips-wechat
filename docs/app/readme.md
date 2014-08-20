@@ -12,8 +12,8 @@ $app = new App($config);
 //load the model Admin
 $app->model('Admin');
 
-//use /visit it 
-$app->mode_admin
+//use it,new a object
+$admin = new $app->mode_admin()
 
 
 ```
