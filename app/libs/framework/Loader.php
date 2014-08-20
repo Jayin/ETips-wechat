@@ -12,7 +12,7 @@ class Loader {
 		$filename = $this->app->config['model_folder'].$model.'.php';
 		if(file_exists($filename)){
 			include_once ($filename);
-			return new $model($this->app);
+			return $model;
 		}else{
 			trigger_error('Error: Could not load model ' . $filename . '!');
 			exit();

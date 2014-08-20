@@ -1,6 +1,6 @@
 <?php
 use utils\HttpRequest;
-require_once 'libs/utils/HttpRequest.php';
+require_once '../../../libs/utils/HttpRequest.php';
 
 //post
 // $req = new HttpRequest();
