@@ -54,15 +54,15 @@ $app->get(function ($app, $req, $res) {
         var_dump($articles);
     }
 
-//    insert($app);
-//    insert($app);
-//    insert($app);
-//    insert($app);
-//    insert($app);
-//    selectAll($app);
+    insert($app);
+    insert($app);
+    insert($app);
+    insert($app);
+    insert($app);
+    selectAll($app);
 
 //    update($app);
-    delete($app);
+//    delete($app);
 });
 $app->post(function ($app, $req, $res) {
     echo "post !!";

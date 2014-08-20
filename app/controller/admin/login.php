@@ -19,7 +19,9 @@ $app->post ( function ($app,$req, $res) {
      $admin = new Admin($app);
 	 $a =$admin->login($username,$password);
 	 if($a){
-	 	$res->redirct('common/home');
+	 	// $req->session->clean();
+	 	$req->session->data['userid'] = $a->id;;
+	 	$res->redirct('admin/manage');
 	 }else{
 	 	$data['error'] = "Password is incorrect!";
 	 	$res->render('admin/login.html',$data);

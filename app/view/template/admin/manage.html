@@ -5,34 +5,67 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Demo</title>
+    <title>App</title>
     <link href="../../view/static/css/bootstrap.css" rel="stylesheet">
 </head>
 <style type="text/css">
 /*居中*/
-.frame {
 
+.frame {
     margin: 80px auto;
 }
 </style>
 
 <body>
     <div class="container frame">
-		<ul class="nav nav-tabs" >
-			  <li  class="active"><a href="#">Home</a></li>
-			  <li ><a href="#">Profile</a></li>
-			  <li ><a href="#">Messages</a></li>
-		</ul>
+
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="javascript:">Welcome <?php if(isset($name))echo $name;?></a>
+            </li>
+        </ul>
+        <div class="panel panel-primary">
+            <div class="panel-heading">文章列表<button class="btn btn-primary btn-sm" style="float:right;"><strong>+</strong></button></div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Url</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($articles as $a) { ?>
+                            <tr id="<?php echo $a->Id;?>">
+                                <td><?php echo $a->Id;?></td>
+                                <td><?php echo $a->Title;?></td>
+                                <td><?php echo $a->Url?></td>
+                                <td>
+                                    <div>
+                                        <button type="button" class="btn btn-primary">修改</button>
+                                        <button type="button" class="btn btn-danger">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+
+               <ul class="pager">
+                  <li><a href="">上一页</a></li>
+                  <li>1</li>
+                  <li><a href="">下一页</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 <script src="../../view/static/js/jquery-2.1.1.js"></script>
 <script src="../../view/static/js/bootstrap.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('ul.nav.nab-tabs li').on('click',function(){
-		$.each()
-	});
-	console.log($('ul li'));
+    
 });
 </script>
 
