@@ -15,7 +15,6 @@ class Response {
 	
 	public function send($content){
 		echo $content;
-		exit();
 	}
 	
 	public function render($template,$data=array()){
@@ -39,7 +38,6 @@ class Response {
 	public function redirct($url){
 		$redirct_url = $this->app_server .'controller/'.$url;
 		header(sprintf("location: %s",$redirct_url));
-		exit();
 	}
 }
 

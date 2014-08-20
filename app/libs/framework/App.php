@@ -85,6 +85,7 @@ class App {
 				}
 				break;
 			default :
+                $handler = '';
 				break;
 		}
 		if ($handler){
