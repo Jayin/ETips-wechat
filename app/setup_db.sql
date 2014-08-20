@@ -17,8 +17,9 @@ CREATE TABLE article(
     id int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title varchar(32) NOT NULL,
     description varchar(128) NOT NULL,
-    pic_ur varchar (128) NOT NULL,
-    $article_type int(16) NOT NULL
+    pic_url varchar (128) NOT NULL,
+    url varchar (128) NOT NULL,
+    article_type int(16) NOT NULL
 );
 
 /*
