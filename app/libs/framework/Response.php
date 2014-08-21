@@ -16,6 +16,11 @@ class Response {
 	public function send($content){
 		echo $content;
 	}
+
+	public function sendJSON($json_string){
+		header('Content-type: application/json');
+		echo $json_string;
+	}
 	
 	public function render($template,$data=array()){
 		$template_file = $this->view_folder .$template;
