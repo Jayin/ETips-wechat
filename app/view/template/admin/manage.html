@@ -60,10 +60,10 @@
                 </table>
 
                 <ul class="pager">
-                    <li id="page_pre" ><a href="">上一页</a>
+                    <li id="btn-page-pre"><a>上一页</a>
                     </li>
-                    <li>1</li>
-                    <li id="page_next" ><a href="">下一页</a>
+                    <li id="text-page">1</li>
+                    <li id="btn-page-next"><a>下一页</a>
                     </li>
                 </ul>
             </div>
@@ -111,6 +111,7 @@
                             <input id="text-type" type="text" class="form-control" id="exampleInputEmail1" placeholder="文章类型">
                         </div>
                     </form>
+                    <div id="alert" class="alert" role="alert"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
@@ -125,6 +126,65 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+    function setFaild(error_msg) {
+        $('#alert').removeClass('alert-success').addClass('alert-danger');
+        $('#alert').text(error_msg);
+        $('#alert').fadeIn();
+    }
+
+    function setSuccess(msg) {
+        $('#alert').removeClass('alert-danger').addClass('alert-success');
+        $('#alert').text(msg);
+        $('#alert').fadeIn();
+    }
+    //init
+    $('#alert').hide();
+
+    if (location.search !== '') {
+        var page = parseInt(location.search.split('=')[1]);
+        page = page > 0 ? page : 1;
+        $('#text-page').text(page);
+    }
+
+
+    $('#btn-add').on('click', function() {
+        var title = $('#text-title').val();
+        var description = $('#text-description').val();
+        var picurl = $('#text-picurl').val();
+        var url = $('#text-url').val();
+        var type = $('#text-type').val();
+
+        if (title === '' || description === '' || picurl === '' || url === '' || type === '') {
+            setFaild('参数不能为空');
+        } else {
+            $.post('manage', {
+                'title': title,
+                'description': description,
+                'picurl': picurl,
+                'url': url,
+                'type': type,
+            }, function(data, textStatus, xhr) {
+                if (data.faild) {
+                    setFaild(data.faild);
+                } else {
+                    setSuccess(data.success);
+                }
+            });
+        }
+    });
+
+
+    $('#btn-page-pre').on('click', function() {
+        var page = parseInt($('#text-page').text()) - 1;
+        page = page > 0 ? page : 1;
+        location = '?page=' + page;
+    });
+
+    $('#btn-page-next').on('click', function() {
+        var page = parseInt($('#text-page').text()) + 1;
+        page = page > 0 ? page : 1;
+        location = '?page=' + page;
+    });
 });
 </script>
 

@@ -38,9 +38,9 @@ class HttpRequest {
 		$post_data = '';
 		if(is_array($data)){
 			foreach ($data as $key => $val){
-				$query_string .=$key.$val."&";
+                $post_data .=$key.$val."&";
 			}
-			$post_data = rtrim($query_string,'&');
+			$post_data = rtrim($post_data,'&');
 		}else if (is_string($data)){
 			$post_data = $data;
 		}
