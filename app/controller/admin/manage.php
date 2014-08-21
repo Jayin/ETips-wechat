@@ -2,14 +2,14 @@
 require_once '../common/__init__.php';
 
 $app->onPre(function ($app,$req,$res){
-//    if(!$req->session->data['userid']){
-//        $res->redirct('admin/login');
-//    }
+    if(!$req->session->data['userid']){
+        $res->redirct('admin/login');
+    }
     $app->model('Admin');
     $app->model('Article');
 });
 
-//
+
 $app->get ( function ($app, $req, $res) {
     $_Admin = new Admin($app);
     $_Article = new Article($app);
