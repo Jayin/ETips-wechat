@@ -24,39 +24,98 @@
             </li>
         </ul>
         <div class="panel panel-primary">
-            <div class="panel-heading">文章列表<button class="btn btn-primary btn-sm" style="float:right;"><strong>+</strong></button></div>
+            <div class="panel-heading">文章列表
+                <button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#myModal">
+                    <strong>+</strong>
+                </button>
+            </div>
             <div class="panel-body">
-                <table class="table">
+                <table class="table table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
                             <th>Url</th>
-                            <th>Option</th>
+                            <th>Operation</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($articles as $a) { ?>
-                            <tr id="<?php echo $a->Id;?>">
-                                <td><?php echo $a->Id;?></td>
-                                <td><?php echo $a->Title;?></td>
-                                <td><?php echo $a->Url?></td>
-                                <td>
-                                    <div>
-                                        <button type="button" class="btn btn-primary">修改</button>
-                                        <button type="button" class="btn btn-danger">删除</button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr id="<?php echo $a->Id;?>">
+                            <td>
+                                <?php echo $a->Id;?></td>
+                            <td>
+                                <?php echo $a->Title;?></td>
+                            <td>
+                                <?php echo $a->Url?></td>
+                            <td>
+                                <div>
+                                    <button id="btn-edit" type="button" class="btn btn-primary">修改</button>
+                                    <button id="btn-delete" type="button" class="btn btn-danger">删除</button>
+                                </div>
+                            </td>
+                        </tr>
                         <?php }?>
                     </tbody>
                 </table>
 
-               <ul class="pager">
-                  <li><a href="">上一页</a></li>
-                  <li>1</li>
-                  <li><a href="">下一页</a></li>
+                <ul class="pager">
+                    <li id="page_pre" ><a href="">上一页</a>
+                    </li>
+                    <li>1</li>
+                    <li id="page_next" ><a href="">下一页</a>
+                    </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- myModal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">添加文章</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label>标题</label>
+                            <input id="text-title" type="text" class="form-control" id="exampleInputEmail1" placeholder="图文消息标题">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>描述</label>
+                            <input id="text-description" type="text" class="form-control" id="exampleInputEmail1" placeholder="图文消息描述">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>图片链接</label>
+                            <input id="text-picurl" type="text" class="form-control" id="exampleInputEmail1" placeholder="图片链接，支持JPG、PNG格式，较好的效果为大图360*200，小图200*200">
+                        </div>
+
+                        <div class="form-group">
+                            <label>图文链接</label>
+                            <input id="text-url" type="text" class="form-control" id="exampleInputEmail1" placeholder="图文消息链接">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>类型</label>
+                            <input id="text-type" type="text" class="form-control" id="exampleInputEmail1" placeholder="文章类型">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <button id="btn-add" type="button" class="btn btn-success">添加</button>
+                </div>
             </div>
         </div>
     </div>
@@ -65,7 +124,7 @@
 <script src="../../view/static/js/bootstrap.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    
+
 });
 </script>
 
