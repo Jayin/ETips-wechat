@@ -12,6 +12,11 @@ class User {
 	public $phone;
 	/** 密码*/
 	public $psw;
+	/** 头像url*/
+    public $avatar;
+    /** 描述*/
+    public $description;
+ 
 	
 	function __construct() {
 		//TODO __construct

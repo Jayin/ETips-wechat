@@ -7,7 +7,9 @@ CREATE TABLE user(
   name varchar(16) NOT NULL ,
   email varchar(32)  NOT NULL UNIQUE,
   phone varchar(11)  NOT NULL UNIQUE,
-  psw  varchar(64) NOT NULL
+  psw  varchar(64) NOT NULL,
+  avatar varchar(128) ,
+  description TEXT
 );
 /*
 Article 
