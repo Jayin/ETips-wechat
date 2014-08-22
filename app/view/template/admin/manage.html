@@ -50,8 +50,8 @@
                                 <?php echo $a->Url?></td>
                             <td>
                                 <div>
-                                    <button id="btn-edit" type="button" class="btn btn-primary">修改</button>
-                                    <button id="btn-delete" type="button" class="btn btn-danger">删除</button>
+                                    <button type="button" class="btn btn-primary" data-edit="<?php echo $a->Id;?>" data-title="<?php echo $a->Title;?>" data-url="<?php echo $a->Url?>" data-description="<?php echo $a->Description;?>" data-picurl="<?php echo $a->PicUrl;?>" data-type="<?php echo $a->article_type;?>">修改</button>
+                                    <button type="button" class="btn btn-danger" data-delete="<?php echo $a->Id;?>">删除</button>
                                 </div>
                             </td>
                         </tr>
@@ -83,6 +83,11 @@
                 </div>
                 <div class="modal-body">
                     <form role="form">
+                        <div class="form-group ">
+                            <label>Id</label>
+                            <input id="text-id" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        </div>
+
                         <div class="form-group">
                             <label>标题</label>
                             <input id="text-title" type="text" class="form-control" id="exampleInputEmail1" placeholder="图文消息标题">
@@ -140,6 +145,18 @@ $(document).ready(function() {
     //init
     $('#alert').hide();
 
+    //make it empty when alert is hidden
+    $('#myModal').on('hidden.bs.modal', function(event) {
+        $('#text-id').val('');
+        $('#text-title').val('');
+        $('#text-description').val('');
+        $('#text-picurl').val('');
+        $('#text-url').val('');
+        $('#text-type').val('');
+        $('#alert').hide();
+    });
+
+    //the page from url
     if (location.search !== '') {
         var page = parseInt(location.search.split('=')[1]);
         page = page > 0 ? page : 1;
@@ -148,6 +165,7 @@ $(document).ready(function() {
 
 
     $('#btn-add').on('click', function() {
+        var id = $('#text-id').val();
         var title = $('#text-title').val();
         var description = $('#text-description').val();
         var picurl = $('#text-picurl').val();
@@ -157,19 +175,53 @@ $(document).ready(function() {
         if (title === '' || description === '' || picurl === '' || url === '' || type === '') {
             setFaild('参数不能为空');
         } else {
-            $.post('manage', {
-                'title': title,
-                'description': description,
-                'picurl': picurl,
-                'url': url,
-                'type': type,
-            }, function(data, textStatus, xhr) {
-                if (data.faild) {
-                    setFaild(data.faild);
-                } else {
-                    setSuccess(data.success);
-                }
-            });
+
+            if (id === '') {
+                //add
+                $.post('manage', {
+                    'title': title,
+                    'description': description,
+                    'picurl': picurl,
+                    'url': url,
+                    'type': type
+                }, function(data, textStatus, xhr) {
+                    if (data.faild) {
+                        setFaild(data.faild);
+                    } else {
+                        setSuccess(data.success);
+                        setTimeout(function(){
+                             location.reload();
+                        }, 1000);
+                    }
+                });
+            } else {
+                //update
+                $.ajax({
+                    url: 'manage',
+                    type: 'PUT',
+                    dataType: 'json',
+                    data: {
+                    'id':id,
+                    'title': title,
+                    'description': description,
+                    'picurl': picurl,
+                    'url': url,
+                    'type': type
+                },
+                })
+                .done(function(data) {
+                    console.log(data);
+                    if (data.faild) {
+                        setFaild(data.faild);
+                    } else {
+                        setSuccess(data.success);
+                        setTimeout(function(){
+                             location.reload();
+                        }, 1000);
+                    }
+                })
+            }
+
         }
     });
 
@@ -185,6 +237,29 @@ $(document).ready(function() {
         page = page > 0 ? page : 1;
         location = '?page=' + page;
     });
+
+    $.each($('[data-edit]'), function(index, val) {
+        $(val).on('click', function() {
+
+            $('#text-id').val($(val).data('edit'));
+            console.log($('#text-id').val());
+            $('#text-title').val($(val).data('title'));
+            $('#text-description').val($(val).data('description'));
+            $('#text-picurl').val($(val).data('picurl'));
+            $('#text-url').val($(val).data('url'));
+            $('#text-type').val($(val).data('type'));
+
+            $('#myModal').modal('show')
+        });
+    });
+
+    $.each($('[data-delete]'), function(index, val) {
+        $(val).on('click', function() {
+            console.log($(val).data('delete'));
+        });
+    });
+
+
 });
 </script>
 

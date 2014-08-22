@@ -2,9 +2,9 @@
 require_once 'index.php';
 
 $app->onPre(function ($app,$req,$res){
-    if(!$req->session->data['userid']){
-        $res->redirct('admin/login');
-    }
+    // if(!$req->session->data['userid']){
+    //     $res->redirct('admin/login');
+    // }
     $app->model('Admin');
     $app->model('Article');
 });
@@ -29,7 +29,7 @@ $app->post ( function ($app, $req, $res) {
     if(!isset($req->data['title']) || !isset($req->data['description']) 
         || !isset($req->data['picurl']) || !isset($req->data['url']) || !isset($req->data['type'])){
         $result['faild'] = "参数不能为空";
-        
+
     }else{
         $_Article = new Article($app);
         $article = new Article();
@@ -50,6 +50,32 @@ $app->post ( function ($app, $req, $res) {
     $res->sendJSON(json_encode($result));
 
 } );
+
+$app->put(function($app,$req,$res){
+    $result = array();
+    if(!isset($req->data['id']) || !isset($req->data['title']) || !isset($req->data['description']) 
+        || !isset($req->data['picurl']) || !isset($req->data['url']) || !isset($req->data['type'])){
+        $result['faild'] = "参数不能为空";
+        
+    }else{
+        $_Article = new Article($app);
+        $article = new Article();
+
+        $article->Id = $req->data['id'];
+        $article->Title = $req->data['title'];
+        $article->Description = $req->data['description'];
+        $article->PicUrl = $req->data['picurl'];
+        $article->Url = $req->data['url'];
+        $article->article_type = $req->data['type'];
+
+        if($_Article->update($article)){
+            $result['success'] ="修改成功";
+        }else{
+            $result['faild'] ="修改失败";
+        }
+    }
+    $res->sendJSON(json_encode($result));
+});
 
 $app->work();
 	

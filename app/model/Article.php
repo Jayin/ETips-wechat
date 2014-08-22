@@ -26,7 +26,7 @@ class Article extends Model
 
     public function update($article)
     {
-        if (!$article->Id) {
+        if (!isset($article) || !$article->Id) {
             return false;
         }
         $sql = sprintf("UPDATE article set title='%s',description='%s',pic_url='%s',url='%s',article_type='%s' WHERE id=%d"
