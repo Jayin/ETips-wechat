@@ -240,9 +240,7 @@ $(document).ready(function() {
 
     $.each($('[data-edit]'), function(index, val) {
         $(val).on('click', function() {
-
             $('#text-id').val($(val).data('edit'));
-            console.log($('#text-id').val());
             $('#text-title').val($(val).data('title'));
             $('#text-description').val($(val).data('description'));
             $('#text-picurl').val($(val).data('picurl'));
@@ -255,11 +253,23 @@ $(document).ready(function() {
 
     $.each($('[data-delete]'), function(index, val) {
         $(val).on('click', function() {
-            console.log($(val).data('delete'));
+            $.ajax({
+                url: 'manage',
+                type: 'DELETE',
+                dataType: 'json',
+                data: {id: $(val).data('delete')},
+            })
+            .done(function(json) {
+                console.log(json);
+                if(json.faild){
+                    alert("删除失败");
+                }else{
+                    $(val).parent().parent().parent().fadeOut();
+                }
+            });
+            
         });
     });
-
-
 });
 </script>
 

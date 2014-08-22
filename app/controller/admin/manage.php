@@ -77,6 +77,26 @@ $app->put(function($app,$req,$res){
     $res->sendJSON(json_encode($result));
 });
 
+$app->delete(function($app,$req,$res){
+    $result = array();
+    if(!isset($req->data['id'])){
+        $result['faild'] = "参数不能为空";
+
+    }else{
+        $_Article = new Article($app);
+        $article = new Article();
+
+        $article->Id = $req->data['id'];
+        if($_Article->delete($article)){
+            $result['success'] ="删除成功";
+        }else{
+            $result['faild'] ="删除失败";
+        }
+    }
+
+    $res->sendJSON(json_encode($result));
+});
+
 $app->work();
 	
 
