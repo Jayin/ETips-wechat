@@ -23,7 +23,12 @@ class Request {
 		$this->file = $_FILES;
 		$this->request_time = $_SERVER ['REQUEST_TIME'];
 		$this->params = $_GET;
-		$this->data = $_POST;
+        if($_SERVER['REQUEST_METHOD'] !='GET' && $_SERVER['REQUEST_METHOD'] !='POST' ){
+            parse_str(file_get_contents('php://input'), $this->data);
+        }else{
+            $this->data = $_POST;
+        }
+
 	}
 }
 
