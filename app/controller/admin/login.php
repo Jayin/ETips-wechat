@@ -1,7 +1,7 @@
 <?php
 
 
-require_once '../common/__init__.php';
+require_once 'index.php';
 
 $app->onPre(function ($app){
 	 $app->model('Admin');
